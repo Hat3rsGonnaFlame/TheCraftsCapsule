@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="products.js" defer></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width= device-width, initial-scale=1.0">
+        <title>The Crafts Capsule</title>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <style>
+
+            body {
+                margin: 0;
+                font-family: Arial, sans-serif;
+                background-color:#ffffff;
+                color: #333;
+
+            }
+
+            /*styles für header*/
+            header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: #ffffff;
+                padding: 20px 40px;
+                box-shadow: 0 2px 5px rgba(223,147,157,1);
+
+            }
+
+            .logo {
+                font-size: 24px;
+                font-weight: bold;
+                color: #ff6f61;
+                text-decoration: none;
+            }
+            nav { display: flex; align-items: center; gap: 30px; }
+            nav ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                display: flex;
+                gap: 20px;
+            }
+
+            nav a {
+                text-decoration: none;
+                color: #555;
+                font-weight: 600;
+                transition: color 0.3s;
+
+            }
+            nav a:hover{
+                color: #ff6f61;
+            }
+
+            .social-icons {
+                display: flex;
+                gap: 15px;
+            }
+
+            .social-icons a {
+                color: #df939d;
+                font-size: 20px;
+                transition: color 0.3s, transform 0.2s;
+            }
+
+            .social-icons a:hover {
+                color: #ff6f61;
+                transform: scale(1,1);
+            }
+
+            /*styles for products*/
+            main {
+                padding: 40px;
+                max-width: 1200px;
+                margin: 0 auto;
+            }
+
+            h1 {
+                text-align: center;
+                margin-bottom: 30px;
+                color: #444;
+            }
+
+            .product-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 25px;
+            }
+
+            .product-card {
+                background-color: #ffffff;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+                text-decoration: none;
+                color: inherit;
+                display: block;
+                transition: transform 0.3s, box-shadow 0.3s;
+            }
+
+            .product-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 6px 15px rgba(223,147,157,1.5);
+
+            }
+
+            .product-card img {
+                width: 100%;
+                height: 250px;
+                object-fit: cover;
+                display: block;
+            } 
+
+            .product-info {
+                padding: 20px;
+                text-align: center;
+            }
+
+            .product-name {
+                font-size: 18px;
+                font-weight: bold;
+                margin: 0 0 10px 0;
+                color: #333;
+            }
+
+            .product-price {
+                font-size: 16px;
+                color: #ff6f61;
+                font-weight: 600;
+                margin: 0;
+            }
+
+            .banner {
+                position: relative;
+                width: 100%;
+                height: 250px;
+                border-radius: 12px;
+                overflow: hidden;
+                margin-bottom: 40px;
+                box-shadow: 0 4px 15px rgba(223,147,157,1.5);
+            }
+
+            .banner img { 
+                width: 100%;
+                height: 100%;
+                object-fit: auto;
+                display: block;
+            }
+
+            .banner::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.2);
+            }
+
+            .banner-content h2 {
+                margin: 0 0 10px 0;
+                font-size: 32px;
+            }
+
+            
+        </style>
+    </head>
+    <body>
+
+        <header>
+            <a href="#" class="logo">The Crafts Capsule</a>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+
+                <div class="social-icons">
+                    <!--Instagram-->
+                    <a href="https://www.instagram.com/thecraftscapsule?stkn=MWFhNGdieDB6Z3E2cg==" target="_blank" title="Instagram">
+                        <i class="fa-brands fa-instagram"></i>
+                    </a>
+
+                    <!--TikTok-->
+                    <a href="" target="_blank" title="TikTok">
+                        <i class="fa-brands fa-tiktok"></i>
+                    </a>
+
+
+                    <!--FaceBook-->
+                    <a href="" target="_blank" title="Facebook">
+                        <i class="fa-brands fa-facebook"></i>
+                    </a>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <section class="banner">
+                <img src="pictures/banner.JPG" alt="Our handcrafted-candles">
+                <div class="banner-content">
+                    <h2>Handmade scented candles</h2>
+                </div>
+            </section>
+
+            <h1>Our collections</h1>
+
+            
+
+            <div id="product-container" class="product-grid"></div>
+        </main>
+
+        
+    </body>
+</html>
