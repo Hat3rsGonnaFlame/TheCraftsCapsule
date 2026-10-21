@@ -1,81 +1,45 @@
 const candles_data = [
     {
         id:"1",
-        name:"You Should Run",
-        Image:"pictures/You_Should_Run.JPG",
-        video:"",
-        price:"PHP150",
-        description:"",
-        scent:"",
-        wax:"bee",
-        burnTime:"5 hours"
-    },
-    {
-        id:"2",
-        name:"Citrus Cocktail",
-        Image:"pictures/citrus_cocktail.JPG",
-        video:"",
-        price:"PHP200",
-        description:"",
-        scent:"Citrus",
-        wax:"soy",
-        burnTime:"3 hours"
-
-    },
-    {
-        id:"3",
         name:"Lemon Pound Cake",
-        Image:"pictures/lemon_pound_cake.JPG",
+        Image:[
+            "pictures/lemonpoundcake.jpg",
+            "pictures/lemonpoundcake2.jpg"
+        ],
         video:"",
-        price:"PHP150",
+        price:"PHP359",
         description:"",
         scent:"Lemon",
         wax:"natural soy",
         burnTime:"2 days"
     },
     {
-        id:"4",
-        name:"Rainwater",
-        Image:"pictures/rainwater.JPG",
+        id:"2",
+        name:"Lavender Driftwood",
+        Image:[
+            "pictures/lavender.jpg",
+            "pictures/lavender2.jpg"
+        ],
         video:"",
-        price:"PHP500",
-        description:"",
-        scent:"Rain",
-        wax:"bee",
-        burnTime:"6 hours"
-    },
-    {
-        id:"5",
-        name:"Sakura",
-        Image:"pictures/sakura.JPG",
-        video:"",
-        price:"PHP134",
+        price:"PHP439",
         description:"",
         scent:"Sakura",
-        wax:"soy",
+        wax:"natural soy",
         burnTime:"2 hours"
     },
     {
-        id:"6",
-        name:"Sandalwood",
-        Image:"pictures/sandalwood.JPG",
+        id:"3",
+        name:"Babypowder",
+        Image:[
+            "pictures/babypowder.jpg",
+            "pictures/babypowder2.jpg"
+        ],
         video:"",
-        price:"PHP999",
+        price:"PHP419",
         description:"",
         scent:"Sandalwood",
-        wax:"bee",
+        wax:"natural soy",
         burnTime:"7 hours"
-    },
-    {
-        id:"7",
-        name:"Watch This",
-        Image:"pictures/watch_this.JPG",
-        video:"",
-        price:"PHP1500",
-        description:"",
-        scent:"Watch this",
-        wax:"soy",
-        burnTime:"24 hours"
     }
 ];
 
@@ -112,7 +76,7 @@ candles_data.forEach(candle => {
             card.classList.add("product-card");
 
     card.innerHTML = `
-        <img src="${candle.Image}" alt="${candle.name}">
+        <img src="${candle.Image[0]}" alt="${candle.name}">
         <div class="product-info">
             <h3 class="product-name">${candle.name}</h3>
             <p class="product-price">${candle.price}</p>
@@ -136,11 +100,18 @@ function load_details(){
         const candle= candles_data.find(k => k.id === produktId);
 
         if (candle) {
-            // Medien zusammenbauen (Bild + optionales Video)
-            let medienHTML = `<img src="${candle.Image}" alt="${candle.name}">`;
-            if (candle.video) {
-                medienHTML += `<video controls src="${candle.video}"></video>`;
-            }
+            const pictureArray = candle.Image;
+            let medienHTML = `
+                <div class="galerie-container">
+                    <img id="main-picture" src="${pictureArray[0]}" alt="${candle.name}" class="main-picture">
+
+                    <div class="thumbnail-list">
+                        ${pictureArray.map((imgSrc, index) => `
+                            <img src="${imgSrc}" alt="Preview ${index + 1}" class="thumbnail ${index === 0 ? 'aktiv' : ''}" onclick="changeImage('${imgSrc}', this)">
+                        `).join('')}
+                    </div>
+                </div>
+            `;
 
             // HTML für die Detailansicht generieren
             container.innerHTML = `
@@ -169,4 +140,11 @@ function load_details(){
                 </div>
             `;
         }
+}
+
+function changeImage(imgSrc, element) {
+    document.getElementById("main-picture").src = imgSrc;
+
+    document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('aktiv'));
+    element.classList.add('aktiv');
 }
